@@ -12,7 +12,10 @@ jobs:
       - image: cimg/base:2021.03
     steps:
       - checkout
-      - run: echo "validate terraform"
+      - run: curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+      - run: sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+      - run: sudo apt-get update && sudo apt-get install terraform
+      - run: terraform help
   fake_test:
     docker:
       - image: cimg/base:2021.03
