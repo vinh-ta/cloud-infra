@@ -27,9 +27,6 @@ workflows:
     jobs:
       - validate_terraform_templates
       - fake_test
-      - acceptance_test_3:
-          requires:
-            - build
       - build:
           requires:
             - validate_terraform_templates
