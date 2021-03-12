@@ -30,7 +30,7 @@ workflows:
   build_and_deploy_infra:
     jobs:
       - validate_terraform_templates
-      - fake_test
+      - unit_test
       - build:
           requires:
             - validate_terraform_templates
