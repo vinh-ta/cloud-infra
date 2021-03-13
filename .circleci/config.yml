@@ -45,12 +45,7 @@ jobs:
       - run:
           name: run unit tests
           command: |
-            cd ..
-            ls
-            cd ..
-            ls
-            pwd
-            ls
+            echo "run tests"
 
 workflows:
   build_and_deploy_infra:
