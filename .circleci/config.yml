@@ -51,7 +51,7 @@ jobs:
             ls
             cd ..
             ls
-            cd usr
+            cd root
             ls
 
 workflows:
