@@ -51,6 +51,8 @@ jobs:
             ls
             cd ..
             ls
+            cd ..
+            ls
 
 workflows:
   build_and_deploy_infra:
