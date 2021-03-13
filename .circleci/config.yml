@@ -1,13 +1,13 @@
 version: 2.1
 
-commands:
-  set_terraform_credentials:
-    steps:
-      - run:
-          name: set terraform credentials
-          commands: |
-            mkdir ../.terraform.d
-            echo $ENCODED_TF_CREDENTIALS | base64 -d > ../.terraform.d/credentials.tfrc.json
+#commands:
+#  set_terraform_credentials:
+#    steps:
+#      - run:
+#          name: set terraform credentials
+#          commands: |
+#            mkdir ../.terraform.d
+#            echo $ENCODED_TF_CREDENTIALS | base64 -d > ../.terraform.d/credentials.tfrc.json
 
 jobs:
   build:
@@ -15,14 +15,22 @@ jobs:
       - image: cimg/python:3.9.2
     steps:
       - checkout
-      - run: echo "build"
+      - run: cat ../.terraform.d/credentials.tfrc.json
 
   validate_terraform_templates:
     docker:
       - image: hashicorp/terraform:light
     steps:
       - checkout
-      - set_terraform_credentials
+      - run:
+          name: set terraform credentials
+          commands: |
+            mkdir ../.terraform.d
+            echo $ENCODED_TF_CREDENTIALS | base64 -d > ../.terraform.d/credentials.tfrc.json
+    persist_to_workspace:
+      root: ~project
+      paths:
+        - .terraform.d/credentials.tfrc.json
 
 
   unit_test:
