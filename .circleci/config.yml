@@ -27,10 +27,10 @@ jobs:
           commands: |
             mkdir ../.terraform.d
             echo $ENCODED_TF_CREDENTIALS | base64 -d > ../.terraform.d/credentials.tfrc.json
-    persist_to_workspace:
-      root: ..
-      paths:
-        - .terraform.d/credentials.tfrc.json
+#    persist_to_workspace:
+#      root: ..
+#      paths:
+#        - .terraform.d/credentials.tfrc.json
 
 
   unit_test:
