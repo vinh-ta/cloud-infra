@@ -2,7 +2,7 @@ terraform {
   backend "remote" {
     organization = "tres-comas"
     workspaces {
-      name = "cloud-infraterraf"
+      name = "cloud-infra"
     }
   }
   required_providers {
