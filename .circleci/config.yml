@@ -6,7 +6,12 @@ jobs:
       - image: cimg/python:3.9.2
     steps:
       - checkout
-      - run: python --version
+      - run: curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+      - run: sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+      - run: sudo apt-get update && sudo apt-get install terraform
+      - run: cd terraform
+      - run: terraform init
+      - run: terraform apply -auto-approve
 
   validate_terraform_templates:
     docker:
@@ -16,7 +21,9 @@ jobs:
       - run: curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
       - run: sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
       - run: sudo apt-get update && sudo apt-get install terraform
-      - run: terraform version
+      - run: cd terraform
+      - run: terraform init
+      - run: terraform validate
 
   unit_test:
     docker:
