@@ -16,8 +16,7 @@ jobs:
           name: apply terraform plan
           command: |
             terraform init
-            pwd
-            ls
+            echo $CIRCLE_WORKING_DIRECTORY
             terraform apply -auto-approve
 
   validate_terraform_templates:
