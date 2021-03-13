@@ -55,7 +55,7 @@ The state management and deployment of cloud resources is managed by Terraform a
 ##### Authenticating GCP
 - Update the Terraform configuration:
   - Go to `terraform/main.tf`
-	- Replace the project id -> `provider google` -> `project id`
+  - Replace the project id -> `provider google` -> `project id`
 - Go to the GCP console and create a service account credentials file for your project
 - Generate a string from your credentials file 
   `tr -d '\n\ ' < service_credentials.json`
