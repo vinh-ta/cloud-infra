@@ -9,8 +9,8 @@ jobs:
       - run:
           name: set terraform credentials
           command: |
-            mkdir ../.terraform.d
-            echo $ENCODED_TF_CREDENTIALS | base64 -d > ../.terraform.d/credentials.tfrc.json
+            mkdir ../../../root/.terraform.d
+            echo $ENCODED_TF_CREDENTIALS | base64 -d > ../../../root/.terraform.d/credentials.tfrc.json
       - run:
           name: apply terraform plan
           command: |
@@ -34,8 +34,6 @@ jobs:
           name: validate terraform
           command: |
             cd terraform
-            cat ../../../../root/.terraform.d/credentials.tfrc.json
-            (echo "yes") | terraform login
             terraform init
             terraform validate
 
