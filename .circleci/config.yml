@@ -49,9 +49,7 @@ jobs:
             ls
             cd ..
             ls
-            cd ..
-            ls
-            cd root
+            pwd
             ls
 
 workflows:
