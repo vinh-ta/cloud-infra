@@ -15,7 +15,7 @@ jobs:
       - image: cimg/python:3.9.2
     steps:
       - checkout
-      - run: cat ../.terraform.d/credentials.tfrc.json
+      - run: echo "build"
 
   validate_terraform_templates:
     docker:
@@ -24,7 +24,7 @@ jobs:
       - checkout
       - run:
           name: set terraform credentials
-          commands: |
+          command: |
             mkdir ../.terraform.d
             echo $ENCODED_TF_CREDENTIALS | base64 -d > ../.terraform.d/credentials.tfrc.json
 #    persist_to_workspace:
@@ -39,7 +39,6 @@ jobs:
     steps:
       - checkout
       - run: docker -v
-      - run: echo $ENCODED_TF_CREDENTIALS
 
 workflows:
   build_and_deploy_infra:
