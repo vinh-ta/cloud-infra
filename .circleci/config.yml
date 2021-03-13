@@ -1,6 +1,7 @@
 version: 2.1
 
 jobs:
+  build:
     docker:
       - image: hashicorp/terraform:light
     working_directory: ~project/terraform
@@ -20,6 +21,7 @@ jobs:
   validate_terraform_templates:
     docker:
       - image: hashicorp/terraform:light
+    working_directory: ~project/terraform
     steps:
       - checkout
       - run: terraform validate
