@@ -1,0 +1,63 @@
+version: 2.1
+
+jobs:
+  validate_terraform_templates:
+    docker:
+      - image: hashicorp/terraform:light
+    working_directory: ~project/terraform
+    steps:
+      - checkout
+      - run:
+          name: set terraform credentials
+          command: |
+            mkdir ../../../root/.terraform.d
+            echo $ENCODED_TF_CREDENTIALS | base64 -d > ../../../root/.terraform.d/credentials.tfrc.json
+      - run:
+          name: validate terraform
+          command: |
+            cd terraform
+            terraform init
+            terraform validate
+
+  unit_tests:
+    docker:
+      - image: cimg/base:2021.03
+    steps:
+      - checkout
+      - run:
+          name: run unit tests
+          command: |
+            echo "run tests"
+
+  build:
+    docker:
+      - image: hashicorp/terraform:light
+    steps:
+      - checkout
+      - run:
+          name: set terraform credentials
+          command: |
+            mkdir ../../../root/.terraform.d
+            echo $ENCODED_TF_CREDENTIALS | base64 -d > ../../../root/.terraform.d/credentials.tfrc.json
+      - run:
+          name: apply terraform plan
+          command: |
+            cd terraform
+            terraform init
+            echo $CIRCLE_WORKING_DIRECTORY
+            terraform apply -auto-approve
+
+
+
+workflows:
+  build_and_deploy_infra:
+    jobs:
+      - validate_terraform_templates
+      - unit_tests
+      - build:
+          filters:
+            branches:
+              only: master
+          requires:
+            - validate_terraform_templates
+            - unit_tests
