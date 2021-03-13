@@ -17,6 +17,7 @@ jobs:
           command: |
             terraform init
             pwd
+            ls
             terraform apply -auto-approve
 
   validate_terraform_templates:
