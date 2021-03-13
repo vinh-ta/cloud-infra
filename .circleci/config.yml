@@ -1,7 +1,6 @@
 version: 2.1
 
 jobs:
-  :
     docker:
       - image: hashicorp/terraform:light
     working_directory: ~project/terraform
