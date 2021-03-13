@@ -4,7 +4,7 @@ jobs:
   build:
     docker:
       - image: hashicorp/terraform:light
-    working_directory: ~project/terraform
+    working_directory: ~project/terraform/
     steps:
       - checkout
       - run:
