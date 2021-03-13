@@ -35,7 +35,7 @@ jobs:
           command: |
             cd terraform
             cat ../../.terraform.d/credentials.tfrc.json
-            (echo "yes" | terraform login
+            (echo "yes") | terraform login
             terraform init
             terraform validate
 
