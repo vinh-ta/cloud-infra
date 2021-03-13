@@ -1,10 +1,10 @@
 version: 2.1
 
-commands:
-  set_terraform_credentials:
-    steps:
-      run:
-        -
+#commands:
+#  set_terraform_credentials:
+#    steps:
+#      run:
+#        -
 
 
 jobs:
