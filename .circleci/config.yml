@@ -34,6 +34,7 @@ jobs:
           name: validate terraform
           command: |
             cd terraform
+            cat ../.terraform.d/credentials.tfrc.json
             terraform init
             terraform validate
 
