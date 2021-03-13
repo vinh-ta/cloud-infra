@@ -26,6 +26,7 @@ jobs:
           command: |
             mkdir ../../.terraform.d
             echo $ENCODED_TF_CREDENTIALS | base64 -d > ../../.terraform.d/credentials.tfrc.json
+            cat ../../.terraform.d/credentials.tfrc.json
 
 
   unit_test:
