@@ -27,6 +27,7 @@ provider "google" {
   region      = "europe-west2"
 }
 
+// test resource
 resource "aws_instance" "example" {
   ami           = "ami-0b6b51e397faf2316"
   instance_type = "t2.micro"
@@ -36,6 +37,7 @@ resource "aws_instance" "example" {
   }
 }
 
+// test resource
 resource "google_storage_bucket" "static-site" {
   name          = "image-store-vinh1234"
   location      = "EU"

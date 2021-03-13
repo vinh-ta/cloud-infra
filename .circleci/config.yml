@@ -4,17 +4,17 @@ jobs:
   build:
     docker:
       - image: hashicorp/terraform:light
-    working_directory: ~project/terraform/
     steps:
       - checkout
       - run:
           name: set terraform credentials
           command: |
-            mkdir ../../.terraform.d
-            echo $ENCODED_TF_CREDENTIALS | base64 -d > ../../.terraform.d/credentials.tfrc.json
+            mkdir ../.terraform.d
+            echo $ENCODED_TF_CREDENTIALS | base64 -d > ../.terraform.d/credentials.tfrc.json
       - run:
           name: apply terraform plan
           command: |
+            cd terraform
             terraform init
             echo $CIRCLE_WORKING_DIRECTORY
             terraform apply -auto-approve
@@ -25,7 +25,11 @@ jobs:
     working_directory: ~project/terraform
     steps:
       - checkout
-      - run: terraform validate
+      - run:
+          name: validate terraform
+          command: |
+            cd terraform
+            terraform validate
 
   unit_tests:
     docker:
@@ -43,4 +47,3 @@ workflows:
           requires:
             - validate_terraform_templates
             - unit_tests
-
