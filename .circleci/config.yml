@@ -16,6 +16,7 @@ jobs:
           name: apply terraform plan
           command: |
             terraform init
+            pwd
             terraform apply -auto-approve
 
   validate_terraform_templates:
