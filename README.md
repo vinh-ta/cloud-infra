@@ -3,6 +3,13 @@
 This project is a starter pack to quickly build and deploy cloud infrastructure to your personal AWS and (or) GCP environments via a CI/CD pipeline. 
 To get started, please fork the repository.
 
+##### Diagram
+
+<p align="center">
+  <img src="./docs/images/architecture_diagram.PNG">
+</p>
+
+
 ## Getting started
 
 #### CI/CD Pipeline
